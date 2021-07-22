@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Role</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<br/><br/>
+<div class="container">
+    <center>
+        <h1>EDIT DATA JENIS BARANG</h1>
+        <hr/>
+    </center>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <form th:action="@{editJenisBarang/{id}(id=${jenisbarang.idJenisBarang})}" th:object="${jenisbarang}" method="post" enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col">
+                        <input type="hidden" name="idSeksi" th:value="*{idJenisBarang}">
+                        <label for="NamaJenisBarang">Nama Barang <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="NamaJenisBarang" id="NamaJenisBarang" th:field="*{namaBarang}" required>
+                        <label for="Keterangan">Keterangan <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Keterangan" id="Keterangan" th:field="*{keterangan}">
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary" href="/JenisBarang">Kembali</a>&#32
+                        <button class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br/><br/><br/>
+</body>
+</html>

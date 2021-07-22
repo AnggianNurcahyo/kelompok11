@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Role</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<br/><br/>
+<div class="container">
+    <center>
+        <h1>EDIT DATA KARYAWAN</h1>
+        <hr/>
+    </center>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <form th:action="@{editKaryawan/{id}(id=${Karyawan.NPK})}" th:object="${Karyawan}" method="post" enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col">
+                        <label>Nama Karyawan <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="NamaKaryawan" id="NamaKaryawan" required th:value="*{namaKaryawan}">
+                        <br/>
+
+                        <label>Jenis Kelamin <span style="color: #ff0000">*</span> </label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="JenisKelamin" id="JenisKelamin" value="1" th:field="*{jenisKelamin}" checked/>
+                                Laki - laki
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="JenisKelamin" id="JenisKelamin2" value="0"  th:field="*{jenisKelamin}" checked/>
+                                Perempuan
+                            </label>
+                        </div>
+                        <br/>
+
+                        <label>Tanggal Lahir <span style="color: red"></span> </label>
+                        <input class="form form-control" type="date" name="TanggalLahir" id="TanggalLahir" th:field="*{tanggalLahir}" >
+                        <br/>
+
+                        <label>Alamat <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Alamat" id="Alamat" required th:value="*{alamat}">
+                        <br/>
+
+                        <label>Email <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Email" id="Email" required th:value="*{email}">
+                        <br/>
+
+                        <label>No Telepon <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="number" name="NoTelepon" id="NoTelepon" required th:value="*{noTelepon}">
+                        <br/>
+
+                        <label>Role <span style="color: red">*</span> </label>
+                        <select class="form-control" name="IdRole" id="ddlIdRole">
+                            <option value=""> -Pilih Role- </option>
+                            <option th:each="item : ${ddlRole}"
+                                    th:value="${item.idRole}"
+                                    th:utext="${item.namaRole}"
+                                    th:selected="${item.idRole == Karyawan.idRole}"
+                            />
+                        </select>
+                        <br/>
+
+                        <label>Seksi <span style="color: red">*</span> </label>
+                        <select class="form-control" name="IdSeksi" id="ddlIdSeksi">
+                            <option value=""> -Pilih Seksi- </option>
+                            <option th:each="item : ${ddlSeksi}"
+                                    th:value="${item.idSeksi}"
+                                    th:utext="${item.namaSeksi}"
+                                    th:selected="${item.idSeksi == Karyawan.idSeksi}"
+                            />
+                        </select>
+                        <br/>
+
+                        <label>Password <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Password" id="Password" required th:value="*{password}">
+                        <br/>
+
+                        <label>Foto <span style="color: red"></span> </label>
+                        <input class="form form-control" type="text" name="Foto" id="Foto">
+                        <br/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary" href="/Karyawan">Kembali</a>&#32
+                        <button class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br/><br/><br/>
+</body>
+</html>

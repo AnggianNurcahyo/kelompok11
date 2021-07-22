@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Role</title>
+    <!--    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<br/><br/>
+<div class="container">
+    <center>
+        <h1>EDIT DATA BARANG VENDOR</h1>
+        <hr/>
+    </center>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <form th:action="@{editBarangVendor/{id}(id=${barangVendor.idBarangV})}" th:object="${barangVendor}" method="post" enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col">
+                        <label for="NamaBarangV">Nama Barang <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" id="NamaBarangV" th:field="*{namaBarangV}" required>
+                        <br/>
+                        <label for="Keterangan">Keterangan <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Keterangan" id="Keterangan" th:field="*{keterangan}">
+                        <br/>
+                        <label>Jenis Barang <span style="color: red">*</span> </label>
+                        <select class="form-control" name="IdJenisBarang" id="ddlIdJenisBarang">
+                            <option value=""> -Pilih Jenis Barang- </option>
+                            <option th:each="item : ${ddlJenisBarang}"
+                                    th:value="${item.idJenisBarang}"
+                                    th:utext="${item.namaBarang}"
+                                    th:selected="${item.idJenisBarang == barangVendor.idJenisBarang}"
+                            />
+                        </select>
+                        <br/>
+                        <label>Vendor <span style="color: red">*</span> </label>
+                        <select class="form-control" name="IdVendor" id="ddlIdVendor">
+                            <option value=""> -Pilih Jenis Vendor- </option>
+                            <option th:each="item : ${ddlVendor}"
+                                    th:value="${item.idVendor}"
+                                    th:utext="${item.namaVendor}"
+                                    th:selected="${item.idVendor == barangVendor.idVendor}"
+                            />
+                        </select>
+                        <br/>
+                        <label for="Harga">Harga <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Harga" id="Harga" th:field="*{harga}">
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary" href="/BarangVendor">Kembali</a>&#32
+                        <button class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br/><br/><br/>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Vendor</title>
+    <!--    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<br/><br/>
+<div class="container">
+    <center>
+        <h1>TAMBAH DATA VENDOR</h1>
+        <hr/>
+    </center>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <form th:action="@{addVendor}" th:object="${Vendor}" method="post" enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col">
+                        <label for="NamaVendor">Nama Vendor <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="NamaVendor" id="NamaVendor"  required>
+                        <br/>
+                        <label>Alamat <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Alamat" id="Alamat" required>
+                        <br/>
+                        <label>Email <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="text" name="Email" id="Email" required>
+                        <br/>
+                        <label>No Telepon <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="number" name="NoTelepon" id="NoTelepon" required>
+                        <br/>
+                        <label>No Rekening <span style="color: red">*</span> </label>
+                        <input class="form form-control" type="number" name="NoRekening" id="NoRekening" required>
+                        <br/>
+                        <label>Jenis Bank <span style="color: red">*</span> </label>
+                    <select class="form-control" name="IdJenisBank" id="ddlIdJenisBank">
+                        <option value=""> -Pilih Jenis Bank- </option>
+                        <option th:each="item : ${ddlJenisBank}"
+                                th:value="${item.idJenisBank}"
+                                th:utext="${item.namaBank}"/>
+                    </select>
+                    <br/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary" href="/Vendor">Kembali</a>&#32
+                        <button class="btn btn-outline-primary">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br/><br/><br/>
+</body>
+</html>
