@@ -11,12 +11,6 @@
         </center>
         <div class="row">
             <div class="col">
-                <a href="/Peminjaman-add" class="btn btn-danger form-control"  onclick="return confirm('Anda ingin mengajukan Peminjaman ?')">Tambah</a>
-            </div>
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col">
                 <table id="table" class="table table-striped">
                     <thead>
                     <tr>
@@ -45,7 +39,8 @@
                         <td >
                             <div class="row">
                                 <div class="col">
-                                    <a th:href="'/Tambah-detail?id=' + ${item.idPeminjaman}" class="btn btn-info form-control">Detail</a>
+                                    <a th:href="'/Get-detail?id=' + ${item.idPeminjaman}" class="btn btn-info form-control">Detail</a>
+                                    <a th:href="@{Peminjaman_Update/{id}(id=${item.idPeminjaman})}" class="btn btn-primary form-control">Setujui</a>
                                 </div>
                             </div>
                         </td>

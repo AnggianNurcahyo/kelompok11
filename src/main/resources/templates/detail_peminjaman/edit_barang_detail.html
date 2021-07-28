@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>EDIT BARANG DETAIL</title>
-</head>
-<body>
-
-</body>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layout/layout_karyawan">
+<div layout:fragment="content">
+    <div class="container">
+        <center>
+            <h1>EDIT BARANG DETAIL PEMINJAMAN</h1>
+            <hr/>
+        </center>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <form th:action="@{editBarangDetail}" method="post" enctype="multipart/form-data" >
+                    <div class="row">
+                        <div class="col">
+                            <label for="NamaBarangP">Nama Barang <span style="color: red">*</span> </label>
+                            <input class="form form-control" type="text" id="NamaBarangP" disabled="true"  th:each="barang : ${listBarang}" th:if="${barangDetail.idBarangP == barang.idBarangP}" th:value="${barang.namaBarangP}" required>
+                            <br/>
+                            <label for="Kuantitas">Jumlah Pinjam <span style="color: red">*</span> </label>
+                            <input class="form form-control" type="text" name="Kuantitas" id="Kuantitas" th:field="${barangDetail.kuantitas}">
+                            <input type="hidden" name="idDetailP" th:value="${barangDetail.idDetailP}">
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-outline-secondary" href="/Tambah-detail">Kembali</a>&#32
+                            <button class="btn btn-outline-primary">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

@@ -18,6 +18,16 @@ public class Detail_peminjaman_service {
         return  a;
     }
 
+    public DetailPeminjaman getAllByIdDetail(int idDetailP){
+        List<DetailPeminjaman> a = getAll();
+        for(DetailPeminjaman b : a){
+            if(b.getIdDetailP() == idDetailP){
+                return b ;
+            }
+        }
+        return null;
+    }
+
     public List<DetailPeminjaman> getAllByIdPeminjaman(String idPeminjaman){
         List<DetailPeminjaman> a = getAll();
         List<DetailPeminjaman> output = new ArrayList<>();

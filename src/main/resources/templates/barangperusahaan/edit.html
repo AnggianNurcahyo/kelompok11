@@ -1,78 +1,73 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Role</title>
-    <!--    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-<br/><br/>
-<div class="container">
-    <center>
-        <h1>EDIT DATA BARANG PERUSAHAAN</h1>
-        <hr/>
-    </center>
-    <br/>
-    <div class="row">
-        <div class="col">
-            <form th:action="@{editBarangPerusahaan/{id}(id=${barangperusahaan.idBarangP})}" th:object="${barangperusahaan}" method="post" enctype="multipart/form-data" >
-                <div class="row">
-                    <div class="col">
-                        <label for="NamaBarangP">Nama Bank <span style="color: red">*</span> </label>
-                        <input class="form form-control" type="text" id="NamaBarangP" th:field="*{namaBarangP}" required>
-                        <br/>
-                        <label for="Keterangan">Keterangan <span style="color: red">*</span> </label>
-                        <input class="form form-control" type="text" name="Keterangan" id="Keterangan" th:field="*{keterangan}">
-                        <br/>
-                        <label>Jenis Barang <span style="color: red">*</span> </label>
-                        <select class="form-control" name="IdJenisBarang" id="ddlIdJenisBarang">
-                            <option value=""> -Pilih Jenis Barang- </option>
-                            <option th:each="item : ${ddlJenisBarang}"
-                                    th:value="${item.idJenisBarang}"
-                                    th:utext="${item.namaBarang}"
-                                    th:selected="${item.idJenisBarang == barangperusahaan.idJenisBarang}"
-                            />
-                        </select>
-                        <br/>
-                        <label>Seksi <span style="color: red">*</span> </label>
-                        <select class="form-control" name="IdSeksi" id="ddlIdSeksi">
-                            <option value=""> -Pilih Jenis Seksi- </option>
-                            <option th:each="item : ${ddlSeksi}"
-                                    th:value="${item.idSeksi}"
-                                    th:utext="${item.namaSeksi}"
-                                    th:selected="${item.idSeksi == barangperusahaan.idSeksi}"
-                            />
-                        </select>
-                        <br/>
-                        <label>Vendor <span style="color: red">*</span> </label>
-                        <select class="form-control" name="IdVendor" id="ddlIdVendor">
-                            <option value=""> -Pilih Jenis Vendor- </option>
-                            <option th:each="item : ${ddlVendor}"
-                                    th:value="${item.idVendor}"
-                                    th:utext="${item.namaVendor}"
-                                    th:selected="${item.idVendor == barangperusahaan.idVendor}"
-                            />
-                        </select>
-                        <br/>
-                        <label for="Stok">Stok <span style="color: red">*</span> </label>
-                        <input class="form form-control" type="text" name="Stok" id="Stok" th:field="*{stok}">
-                        <br/>
-                        <label for="Harga">Harga <span style="color: red">*</span> </label>
-                        <input class="form form-control" type="text" name="Harga" id="Harga" th:field="*{harga}">
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layout/layout_ga">
+<div layout:fragment="content">
+    <div class="container">
+        <center>
+            <h1>EDIT DATA BARANG PERUSAHAAN</h1>
+            <hr/>
+        </center>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <form th:action="@{editBarangPerusahaan/{id}(id=${barangperusahaan.idBarangP})}" th:object="${barangperusahaan}" method="post" enctype="multipart/form-data" >
+                    <div class="row">
+                        <div class="col">
+                            <label for="NamaBarangP">Nama Bank <span style="color: red">*</span> </label>
+                            <input class="form form-control" type="text" id="NamaBarangP" th:field="*{namaBarangP}" required>
+                            <br/>
+                            <label for="Keterangan">Keterangan <span style="color: red">*</span> </label>
+                            <input class="form form-control" type="text" name="Keterangan" id="Keterangan" th:field="*{keterangan}">
+                            <br/>
+                            <label>Jenis Barang <span style="color: red">*</span> </label>
+                            <select class="form-control" name="IdJenisBarang" id="ddlIdJenisBarang">
+                                <option value=""> -Pilih Jenis Barang- </option>
+                                <option th:each="item : ${ddlJenisBarang}"
+                                        th:value="${item.idJenisBarang}"
+                                        th:utext="${item.namaBarang}"
+                                        th:selected="${item.idJenisBarang == barangperusahaan.idJenisBarang}"
+                                />
+                            </select>
+                            <br/>
+                            <label>Seksi <span style="color: red">*</span> </label>
+                            <select class="form-control" name="IdSeksi" id="ddlIdSeksi">
+                                <option value=""> -Pilih Jenis Seksi- </option>
+                                <option th:each="item : ${ddlSeksi}"
+                                        th:value="${item.idSeksi}"
+                                        th:utext="${item.namaSeksi}"
+                                        th:selected="${item.idSeksi == barangperusahaan.idSeksi}"
+                                />
+                            </select>
+                            <br/>
+                            <label>Vendor <span style="color: red">*</span> </label>
+                            <select class="form-control" name="IdVendor" id="ddlIdVendor">
+                                <option value=""> -Pilih Jenis Vendor- </option>
+                                <option th:each="item : ${ddlVendor}"
+                                        th:value="${item.idVendor}"
+                                        th:utext="${item.namaVendor}"
+                                        th:selected="${item.idVendor == barangperusahaan.idVendor}"
+                                />
+                            </select>
+                            <br/>
+                            <label for="Stok">Stok <span style="color: red">*</span> </label>
+                            <input class="form form-control" type="text" name="Stok" id="Stok" th:field="*{stok}">
+                            <br/>
+                            <label for="Harga">Harga <span style="color: red">*</span> </label>
+                            <input class="form form-control" type="text" name="Harga" id="Harga" th:field="*{harga}">
+                        </div>
                     </div>
-                </div>
-                <br/>
-                <div class="row">
-                    <div class="col">
-                        <a class="btn btn-outline-secondary" href="/BarangPerusahaan">Kembali</a>&#32
-                        <button class="btn btn-outline-primary">Simpan</button>
+                    <br/>
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-outline-secondary" href="/BarangPerusahaan">Kembali</a>&#32
+                            <button class="btn btn-outline-primary">Simpan</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<br/><br/><br/>
-</body>
 </html>

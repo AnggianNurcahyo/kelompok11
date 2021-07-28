@@ -1,12 +1,13 @@
 package com.example.ga.kelompok11.service;
 
 import com.example.ga.kelompok11.generator.GeneratorId;
-import com.example.ga.kelompok11.model.Karyawan;
+import com.example.ga.kelompok11.model.DetailPeminjaman;
 import com.example.ga.kelompok11.model.Peminjaman;
 import com.example.ga.kelompok11.repository.PeminjamanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,10 +21,15 @@ public class PeminjamanService {
         return PeminjamanList;
     }
 
-//    public Peminjaman getPeminjamanByIdPeminjaman(String IdPeminjaman){
-//        Peminjaman peminjaman = peminjamanRepository.findByIdPeminjaman(IdPeminjaman);
-//        return peminjaman;
-//    }
+    public Peminjaman getAllByIdPeminjaman(String idPeminjaman){
+        List<Peminjaman> a = getAllPeminjaman();
+        for(Peminjaman b : a){
+            if(b.getIdPeminjaman().equals(idPeminjaman)){
+                return b ;
+            }
+        }
+        return null;
+    }
 
     public void savePeminjaman(Peminjaman peminjaman) {
         peminjaman.setIdPeminjaman(generateId());

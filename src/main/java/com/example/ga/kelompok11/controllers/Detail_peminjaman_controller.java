@@ -36,6 +36,20 @@ public class Detail_peminjaman_controller {
         return "/detail_peminjaman/list_detail";
     }
 
+    @GetMapping("/Get-detail")
+    public String goto_detail(
+            @RequestParam("id") String idPeminjaman,
+            Model model
+    ){
+        List<BarangPerusahaan> bp = barangPerusahaanService.getAllBarangPerusahaan();
+        List<DetailPeminjaman> dp = detailPeminjamanService.getAllByIdPeminjaman(idPeminjaman);
+
+        model.addAttribute("listBarang", bp);
+        model.addAttribute("listDetail", dp);
+        model.addAttribute("idPeminjaman", idPeminjaman);
+        return "/detail_peminjaman/detail_peminjaman";
+    }
+
     @GetMapping("/Tambah-barang-detail")
     public String goto_tambah_barang_detail(
             @RequestParam("id") String idPeminjaman,
@@ -50,8 +64,13 @@ public class Detail_peminjaman_controller {
 
     @GetMapping("/Edit-barang-detail")
     public String goto_edit_barang_detail(
-            @RequestParam("id") int idBarang
+            @RequestParam("id") int idDetailP,
+            Model model
     ){
+        DetailPeminjaman detailPeminjaman = detailPeminjamanService.getAllByIdDetail(idDetailP);
+        List<BarangPerusahaan> bp = barangPerusahaanService.getAllBarangPerusahaan();
+        model.addAttribute("listBarang", bp);
+        model.addAttribute("barangDetail", detailPeminjaman);
         return "detail_peminjaman/edit_barang_detail";
     }
 
@@ -70,14 +89,27 @@ public class Detail_peminjaman_controller {
         }
         DetailPeminjaman dt = new DetailPeminjaman();
         dt.setIdPeminjaman(idPeminjaman);
-        dt.setHargaBarang(0);
+        dt.setHargaBarang(barangPerusahaan.getHarga());
         dt.setIdBarangP(idBarang);
         dt.setKondisiBarang(new Integer(0));
         dt.setKeterangan("");
-        dt.setKuantitas(0);
+        dt.setKuantitas(1);
 
         detailPeminjamanService.save(dt);
-        System.out.println("MASUK SAMPE SINI");
         return "redirect:Tambah-detail?id="+idPeminjaman;
+    }
+
+    @PostMapping("editBarangDetail")
+    public String editBarangDetail
+            (DetailPeminjaman dt)
+    {
+        DetailPeminjaman detailPeminjaman = detailPeminjamanService.getAllByIdDetail(dt.getIdDetailP());
+        BarangPerusahaan barangPerusahaan = barangPerusahaanService.getBarangPerusahaan(detailPeminjaman.getIdBarangP());
+        detailPeminjaman.setHargaBarang(barangPerusahaan.getHarga());
+        detailPeminjaman.setKondisiBarang(new Integer(0));
+        detailPeminjaman.setKeterangan("");
+        detailPeminjaman.setKuantitas(dt.getKuantitas());
+        detailPeminjamanService.save(detailPeminjaman);
+        return "redirect:Tambah-detail?id="+detailPeminjaman.getIdPeminjaman();
     }
 }

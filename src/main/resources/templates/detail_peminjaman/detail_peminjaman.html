@@ -7,14 +7,7 @@
     <div class="container">
         <center>
             <h1>DAFTAR DETAIL PEMINJAMAN</h1>
-            <hr/>
         </center>
-        <div class="row">
-            <div class="col">
-                <a th:href="'/Tambah-barang-detail?id=' + ${idPeminjaman}" class="btn btn-danger form-control">Tambah detail</a>
-            </div>
-        </div>
-        <br/>
         <div class="row">
             <div class="col">
                 <table id="table" class="table table-striped">
@@ -23,7 +16,6 @@
                         <td>No</td>
                         <td>Nama barang</td>
                         <td>Jumlah peminjaman</td>
-                        <td>Aksi</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,16 +23,14 @@
                         <td><span th:text="${iter.count}"></span></td>
                         <td th:each="barang : ${listBarang}" th:if="${barang.idBarangP == item.idBarangP}" th:text="${barang.namaBarangP}"></td>
                         <td th:text="${item.kuantitas}"></td>
-                        <td >
-                            <div class="row">
-                                <div class="col">
-                                    <a th:href="'/Edit-barang-detail?id=' + ${item.idDetailP}" class="btn btn-info form-control">Edit</a>
-                                </div>
-                            </div>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-outline-secondary" href="/DaftarPeminjaman">Kembali</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

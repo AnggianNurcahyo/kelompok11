@@ -1,85 +1,80 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Role</title>
-    <!--    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--    <link rel="stylesheet" href="../../static/css/bootstrap.css">-->
-
-</head>
-<body>
-<br/><br/>
-<div class="container">
-    <center>
-        <h1>DAFTAR KARYAWAN</h1>
-        <hr/>
-    </center>
-    <div class="row">
-        <div class="col">
-            <a href="/Karyawan-add" class="btn btn-outline-primary">Tambah</a>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layout/layout_admin">
+<div layout:fragment="content">
+    <div class="container">
+        <center>
+            <h1>DAFTAR KARYAWAN</h1>
+            <hr/>
+        </center>
+        <div class="row">
+            <div class="col">
+                <a href="/Karyawan-add" class="btn btn-outline-primary">Tambah</a>
+            </div>
         </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col">
-            <table id="table" class="table table-striped">
-                <thead>
-                <tr>
-                    <td>No</td>
-                    <td>NPK</td>
-                    <td>Nama Karyawan</td>
-                    <td>Jenis Kelamin</td>
-                    <td>Tanggal Lahir</td>
-                    <td>Alamat</td>
-                    <td>Email</td>
-                    <td>No Telepon</td>
-                    <td>Role</td>
-                    <td>Seksi</td>
-                    <td>Aksi</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="item, iter: ${listKaryawan}">
-                    <td><span th:text="${iter.count}"></span></td>
-                    <td th:text="${item.NPK}"></td>
-                    <td th:text="${item.namaKaryawan}"></td>
-                    <td>
-                        <div th:switch="${item.jenisKelamin}">
-                            <span th:case="1" >Laki - laki</span>
-                            <span th:case="0" >Perempuan</span>
-                        </div>
-                    </td>
-                    <td th:text="${item.tanggalLahir}"></td>
-                    <td th:text="${item.alamat}"></td>
-                    <td th:text="${item.email}"></td>
-                    <td th:text="${item.noTelepon}"></td>
-                    <td th:text="${item.roleList.namaRole}"></td>
-                    <td th:text="${item.seksiList.namaSeksi}"></td>
-                    <td >
-                        <div class="row">
-                            <div class="col">
-                                <a th:href="@{'Karyawan-edit?NPK='+${item.NPK}}" class="btn btn-info form-control">Edit</a>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <table id="table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td>No</td>
+                        <td>NPK</td>
+                        <td>Nama Karyawan</td>
+                        <td>Jenis Kelamin</td>
+                        <td>Tanggal Lahir</td>
+                        <td>Alamat</td>
+                        <td>Email</td>
+                        <td>No Telepon</td>
+                        <td>Role</td>
+                        <td>Seksi</td>
+                        <td>Aksi</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item, iter: ${listKaryawan}">
+                        <td><span th:text="${iter.count}"></span></td>
+                        <td th:text="${item.NPK}"></td>
+                        <td th:text="${item.namaKaryawan}"></td>
+                        <td>
+                            <div th:switch="${item.jenisKelamin}">
+                                <span th:case="1" >Laki - laki</span>
+                                <span th:case="0" >Perempuan</span>
                             </div>
-                            <div class="col">
-                                <a th:if="${item.rowStatus == 1}" th:href="@{deleteKaryawan/{id}(id=${item.NPK})}" class="btn btn-danger form-control"  onclick="return confirm('Tekan OK untuk menghapus')">Hapus</a>
-                                <a th:if="${item.rowStatus == 0}" th:href="@{deleteKaryawan/{id}(id=${item.NPK})}" class="btn btn-primary form-control" th:disabled="true">Non-Aktif</a>
+                        </td>
+                        <td th:text="${item.tanggalLahir}"></td>
+                        <td th:text="${item.alamat}"></td>
+                        <td th:text="${item.email}"></td>
+                        <td th:text="${item.noTelepon}"></td>
+                        <td th:text="${item.roleList.namaRole}"></td>
+                        <td th:text="${item.seksiList.namaSeksi}"></td>
+                        <td >
+                            <div class="row">
+                                <div class="col">
+                                    <a th:href="@{'Karyawan-edit?NPK='+${item.NPK}}" class="btn btn-info form-control">Edit</a>
+                                </div>
+                                <div class="col">
+                                    <a th:if="${item.rowStatus == 1}" th:href="@{deleteKaryawan/{id}(id=${item.NPK})}" class="btn btn-danger form-control"  onclick="return confirm('Tekan OK untuk menghapus')">Hapus</a>
+                                    <a th:if="${item.rowStatus == 0}" th:href="@{deleteKaryawan/{id}(id=${item.NPK})}" class="btn btn-primary form-control" th:disabled="true">Non-Aktif</a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <button class="btn btn-outline-secondary">
-                Kembali
-            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-<br/><br/><br/>
-</body>
+<div layout:fragment="script">
+    <!-------------------------------------------------------- SCRIPT  -->
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        } );
+    </script>
+    <!------------------------------------------------------------------->
+</div>
 </html>
